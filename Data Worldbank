@@ -1,0 +1,24 @@
+import wbdata
+import pandas
+import matplotlib.pyplot as plt
+
+# set up the countries I want
+countries = ["FR", "US", ]
+
+# set up the indicator I want (just build up the dict if you want more than one)
+indicators = {'NY.GDP.PCAP.CD': 'GDP per Capita'}
+indicators2 = {'SP.POP.TOTL' : 'Total population'}
+
+# grab indicators above for countires above and load into data frame
+df = wbdata.get_dataframe(indicators, country=countries, convert_date=False)
+ak = wbdata.get_dataframe(indicators2, country=countries,convert_date=False)
+
+
+# df is "pivoted", pandas' unstack fucntion helps reshape it into something plottable
+dfu = df.unstack(level=1)
+hehe = ak.unstack(level=1)
+
+# a simple matplotlib plot with legend, labels and a title
+
+print(dfu)
+print(hehe)
